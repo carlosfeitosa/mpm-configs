@@ -21,4 +21,5 @@ spring:
         predicates:
         - Path=/api/v1/projects/**
         filters:
-        - RewritePath=/mpm-back/api/projects/**
+        - RewritePath=/mpm-back/api/projects/(?<segment>/?.*), $\{segment}
+        
