@@ -20,3 +20,5 @@ spring:
         uri: lb://MPM-MS-PROJECT
         predicates:
         - Path=/api/v1/projects/**
+        filters:
+        - RewritePath=/mpm-back/api/projects/**
