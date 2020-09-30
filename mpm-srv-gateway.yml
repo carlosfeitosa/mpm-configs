@@ -17,10 +17,12 @@ spring:
     gateway:
       routes:
       - id: ms-project
-        uri: lb://MPM-MS-PROJECT/mpm-back/api/projects
+        uri: lb://MPM-MS-PROJECT
         predicates:
-        - Path=/api/v1/projects/**
-        
+        - Path=/mpm-back/api/projects/**
+
+#####################################################################################
+# Logging settings
 logging:
   level:
     org.springframework.cloud.gateway: DEBUG
