@@ -23,3 +23,9 @@ spring:
         filters:
         - RewritePath=/mpm-back/api/projects/(?<segment>/?.*), $\{segment}
         
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    reactor.netty.http.client: DEBUG
+        
+        
