@@ -16,11 +16,7 @@ spring:
   cloud:
     gateway:
       routes:
-      - id: employeeModule
-        uri: http://localhost:8081/
+      - id: ms-project
+        uri: lb://MPM-MS-PROJECT
         predicates:
-        - Path=/employee/**
-      - id: consumerModule
-        uri: http://localhost:8082/
-        predicates:
-        - Path=/consumer/**
+        - Path=/api/v1/project/**
