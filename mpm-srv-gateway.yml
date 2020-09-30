@@ -17,11 +17,9 @@ spring:
     gateway:
       routes:
       - id: ms-project
-        uri: lb://MPM-MS-PROJECT
+        uri: lb://MPM-MS-PROJECT/mpm-back/api/projects
         predicates:
         - Path=/api/v1/projects/**
-        filters:
-        - RewritePath=/mpm-back/api/projects/(?<segment>/?.*), $\{segment}
         
 logging:
   level:
