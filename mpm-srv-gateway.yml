@@ -19,4 +19,6 @@ spring:
       - id: ms-project
         uri: lb://MPM-MS-PROJECT
         predicates:
-        - Path=/project/**
+        - Path=/api/v1/projects/**
+        filters:
+        - RewritePath=/api/v1/projects/(?.*), /$\{remains}
