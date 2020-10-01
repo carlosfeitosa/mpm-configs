@@ -20,6 +20,25 @@ spring:
         uri: lb://MPM-MS-PROJECT
         predicates:
         - Path=/mpm-back/api/projects/**
+        filters:
+          - AddRequestHeader=origin,gateway-api
+      - id: ms-project2
+        uri: lb://MPM-MS-PROJECT
+        predicates:
+        - Path=/api/v1/projects/**
+        filters:
+          - AddRequestHeader=origin,gateway-api
+          - RewritePath=/api/v1/projects(?<segment>/?.*), $\{segment}
+          - SetPath=/mpm-back/api/projects
+          
+          
+      - id: path_route
+        uri: https://httpbin.org
+        predicates:
+        - Path=/new/post/**
+        filters:
+          - RewritePath=/new(?<segment>/?.*), $\{segment}
+          - SetPath=/post
       - id: add_request_header_route
         uri: https://httpbin.org
         predicates:
