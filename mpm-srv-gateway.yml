@@ -20,6 +20,20 @@ spring:
         uri: lb://MPM-MS-PROJECT
         predicates:
         - Path=/mpm-back/api/projects/**
+      - id: add_request_header_route
+        uri: https://httpbin.org
+        predicates:
+        - Path=/get/**
+        filters:
+          - AddRequestHeader=My-Header-Good,Good
+          - AddRequestHeader=My-Header-Remove,Remove
+          - AddRequestParameter=var, good
+          - AddRequestParameter=var2, remove
+          - MapRequestHeader=My-Header-Good, My-Header-Bad
+          - MapRequestHeader=My-Header-Set, My-Header-Bad
+          - SetRequestHeader=My-Header-Set, Set 
+          - RemoveRequestHeader=My-Header-Remove
+          - RemoveRequestParameter=var2
 
 #####################################################################################
 # Logging settings
