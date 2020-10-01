@@ -24,5 +24,4 @@ spring:
           - AddRequestHeader=origin,gateway-api
           - AddResponseHeader=origin,mpm-back
           - RewritePath=/api/v1/projects(?<segment>/?.*), $\{segment}
-          - SetPath=/mpm-back/api/projects
         
