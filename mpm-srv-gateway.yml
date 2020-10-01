@@ -19,9 +19,8 @@ spring:
       - id: ms-project
         uri: lb://MPM-MS-PROJECT
         predicates:
-        - Path=/api/v1/projects/**
+        - Path=/api/v1/projects/{segment}
         filters:
           - AddRequestHeader=origin,gateway-api
           - AddResponseHeader=origin,mpm-back
-          - RewritePath=/api/v1/projects(?<segment>/?.*), /mpm-back/api/projects/$\{segment}
-        
+          - SetPath=/mpm-back/api/projects/{segment}
