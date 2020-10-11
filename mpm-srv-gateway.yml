@@ -16,19 +16,19 @@ spring:
   cloud:
     gateway:
       routes:
-      - id: ms-project
-        uri: lb://MPM-MS-PROJECT
-        predicates:
-        - Path=/api/v1/projects/**
-        filters:
-          - AddRequestHeader=origin,gateway-api
-          - AddResponseHeader=origin,mpm-back
-          - RewritePath=/api/v1/projects(?<segment>/?.*), /mpm-back/api/projects/$\{segment}
       - id: srv-auth
         uri: lb://MPM-SRV-AUTH
         predicates:
         - Path=/api/v1/auth/token
         filters:
           - AddRequestHeader=origin,gateway-api
-          - AddResponseHeader=origin,mpm-auth
+          - AddResponseHeader=origin,server-auth
           - RewritePath=/api/v1/auth/token, /oauth/token
+      - id: ms-project
+        uri: lb://MPM-MS-PROJECT
+        predicates:
+        - Path=/api/v1/projects/**
+        filters:
+          - AddRequestHeader=origin,gateway-api
+          - AddResponseHeader=origin,ms-backend
+          - RewritePath=/api/v1/projects(?<segment>/?.*), /mpm-back/api/projects/$\{segment}
